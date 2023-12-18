@@ -7,7 +7,6 @@ const TodosForm = ({ AddTask, FilterDone, mode, activeTask }) => {
     setText(defaultName);
   }, [mode, activeTask]);
   const [text, setText] = useState(defaultName);
-  console.log("text ", text);
   const HandleClick = () => {
     if (!text.trim()) {
       return;

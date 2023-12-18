@@ -1,7 +1,6 @@
 import React from "react";
 import FeatherIcon from "feather-icons-react";
 const Todo = ({ task, ToggleStatus, DeleteTask, editMode, mode }) => {
-  console.log(mode);
   return (
     <div className={`todos-todo ${task.done ? "done" : ""}`}>
       <div

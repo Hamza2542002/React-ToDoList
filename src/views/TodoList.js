@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import Todos from "../components/todos/Todos";
 import TodosForm from "../components/todos/TodosForm";
+import TasksContext from "../context/TasksContext";
 import { act } from "react-dom/test-utils";
 
 // const InitialData = [
@@ -64,7 +65,7 @@ const TodoList = () => {
 
   const FilterDone = () => {
     if (mode === "filter") {
-      return;
+      setMode("add");
     }
     if (mode === "add") {
       setMode("filter");
@@ -85,28 +86,29 @@ const TodoList = () => {
   if (mode === "edit" && activeTask) {
     currentTasks = todolist.filter((item) => item == activeTask);
   }
-
   setToLocal();
   return (
-    <main>
-      <div className="container">
-        <div className="todos">
-          <TodosForm
-            AddTask={AddTask}
-            FilterDone={FilterDone}
-            activeTask={activeTask}
-            mode={mode}
-          />
-          <Todos
-            todos={currentTasks}
-            ToggleStatus={ToggleStatus}
-            DeleteTask={DeleteTask}
-            mode={mode}
-            editMode={editMode}
-          />
+    <TasksContext.Provider value={currentTasks}>
+      <main>
+        <div className="container">
+          <div className="todos">
+            <TodosForm
+              AddTask={AddTask}
+              FilterDone={FilterDone}
+              activeTask={activeTask}
+              mode={mode}
+            />
+            <Todos
+              todos={currentTasks}
+              ToggleStatus={ToggleStatus}
+              DeleteTask={DeleteTask}
+              mode={mode}
+              editMode={editMode}
+            />
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </TasksContext.Provider>
   );
 };
 

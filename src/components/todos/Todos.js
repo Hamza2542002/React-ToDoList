@@ -1,7 +1,6 @@
 import React from "react";
 import Todo from "./Todo";
 const Todos = (props) => {
-  console.log(props.todos);
   return (
     <div className="todos-list">
       {props.todos.map((element) => {

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import TasksContext from "../../context/TasksContext";
+import { useContext } from "react";
 
 const Header = () => {
   const [TaskNum, setTaskNum] = useState(
